@@ -1,0 +1,13 @@
+item_id,label,text
+001,positive,The delivery arrived early and everything looks great.
+002,negative,The item broke after a single use.
+003,neutral,The package contains two cables.
+004,positive,Really helpful customer service.
+005,negative,My order still has not arrived.
+006,neutral,Available in blue and green.
+007,positive,Easy to set up and works perfectly.
+008,negative,The instructions were impossible to follow.
+009,neutral,I purchased this last Tuesday.
+010,positive,I would happily buy this again.
+011,negative,The wrong product was delivered.
+012,neutral,The store opens at nine.
