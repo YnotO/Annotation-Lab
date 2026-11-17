@@ -39,21 +39,31 @@ with st.sidebar:
     st.markdown("### ◈ Annotation Lab")
     st.caption("QUALITY EVALUATION WORKSPACE")
     st.divider()
+    evaluation_type = st.selectbox("Evaluation type", ["Class labels", "LiDAR 3D boxes"], key="evaluation_type")
     mode = st.radio("Data source", ["Sample project", "Upload your data"])
     st.divider()
     st.markdown("**Evaluation rules**")
-    st.caption("One label per item. Every ground-truth item is expected from each annotator.")
+    st.caption("One label per item. Every ground-truth item is expected from each annotator." if evaluation_type == "Class labels"
+               else "Compare cuboids within each frame and class. Missed boxes and extra boxes reduce the detection score.")
     ignore_case = st.checkbox("Ignore label capitalization", value=False)
     st.caption("Leading and trailing spaces are always trimmed. Item IDs and annotator names remain case-sensitive.")
     st.divider()
     st.markdown("**Templates**")
-    for filename, label in [("ground_truth.csv", "Ground truth CSV"), ("annotations.csv", "Annotations CSV")]:
-        st.download_button(label, (ROOT / "samples" / filename).read_bytes(), filename, "text/csv", width="stretch")
+    templates = [("ground_truth.csv", "Ground truth CSV"), ("annotations.csv", "Annotations CSV")] if evaluation_type == "Class labels" else [
+        ("lidar_ground_truth.json", "LiDAR ground truth JSON"), ("lidar_amina.json", "LiDAR submission JSON")]
+    for filename, label in templates:
+        st.download_button(label, (ROOT / "samples" / filename).read_bytes(), filename,
+                           "application/json" if filename.endswith(".json") else "text/csv", width="stretch")
     st.caption("Files are processed in memory. This MVP does not save evaluation history.")
 
 st.caption("WORKSPACE  /  ANNOTATION QUALITY")
 st.title("Every annotation, measured.")
 st.write("Compare annotators against ground truth. Find errors, track coverage, and export the evidence.")
+
+if evaluation_type == "LiDAR 3D boxes":
+    from lidar_ui import render_lidar
+    render_lidar(mode, ignore_case)
+    st.stop()
 
 try:
     if mode == "Sample project":
@@ -147,7 +157,7 @@ with review:
 
 with metrics_tab:
     st.subheader("Where labels get confused")
-    chosen = st.selectbox("Annotator", summary.annotator.tolist())
+    chosen = st.selectbox("Annotator", summary.annotator.tolist(), key="classification_annotator")
     label_display = by_label[by_label.annotator.eq(chosen)].drop(columns="annotator").copy()
     label_display[["precision", "recall", "f1"]] *= 100
     st.dataframe(label_display, hide_index=True, width="stretch",
@@ -195,7 +205,7 @@ with st.expander("How scores are calculated"):
     Undefined label metrics are zero. Unknown IDs are excluded from scores. Duplicate IDs in ground truth,
     duplicate annotator/item pairs, and blank required values must be fixed before evaluation.
 
-    This version evaluates **one class label per item**. Bounding boxes, text spans, multi-label tasks,
+    This mode evaluates **one class label per item**. Select **LiDAR 3D boxes** in the sidebar for cuboids. Text spans, multi-label tasks,
     free-text answers, and transcription similarity require different scoring methods.
     Annotators with no rows in the submission file cannot be detected.
     """)
