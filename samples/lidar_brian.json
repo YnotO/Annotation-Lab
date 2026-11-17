@@ -1,0 +1,96 @@
+{
+  "labels": [
+    {
+      "file_id": "0.pcd",
+      "label_id": "b:1",
+      "label_category_id": "car",
+      "label_type": "3d_bbox",
+      "stage_id": "Labelling",
+      "sensor_id": "lidar",
+      "label_set_id": "default",
+      "three_d_bbox": {
+        "cx": 0.5,
+        "cy": 0,
+        "cz": 1,
+        "l": 4,
+        "w": 2,
+        "h": 2,
+        "quaternion": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        }
+      }
+    },
+    {
+      "file_id": "0.pcd",
+      "label_id": "b:2",
+      "label_category_id": "car",
+      "label_type": "3d_bbox",
+      "stage_id": "Labelling",
+      "sensor_id": "lidar",
+      "label_set_id": "default",
+      "three_d_bbox": {
+        "cx": 13,
+        "cy": 0,
+        "cz": 1,
+        "l": 4,
+        "w": 2,
+        "h": 2,
+        "quaternion": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        }
+      }
+    },
+    {
+      "file_id": "1.pcd",
+      "label_id": "b:1",
+      "label_category_id": "car",
+      "label_type": "3d_bbox",
+      "stage_id": "Labelling",
+      "sensor_id": "lidar",
+      "label_set_id": "default",
+      "three_d_bbox": {
+        "cx": 1,
+        "cy": 0,
+        "cz": 1,
+        "l": 4,
+        "w": 2,
+        "h": 2,
+        "quaternion": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        }
+      }
+    },
+    {
+      "file_id": "1.pcd",
+      "label_id": "b:extra",
+      "label_category_id": "car",
+      "label_type": "3d_bbox",
+      "stage_id": "Labelling",
+      "sensor_id": "lidar",
+      "label_set_id": "default",
+      "three_d_bbox": {
+        "cx": 30,
+        "cy": 0,
+        "cz": 1,
+        "l": 4,
+        "w": 2,
+        "h": 2,
+        "quaternion": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        }
+      }
+    }
+  ]
+}

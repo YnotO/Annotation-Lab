@@ -1,0 +1,96 @@
+{
+  "labels": [
+    {
+      "file_id": "0.pcd",
+      "label_id": "a:1",
+      "label_category_id": "car",
+      "label_type": "3d_bbox",
+      "stage_id": "Labelling",
+      "sensor_id": "lidar",
+      "label_set_id": "default",
+      "three_d_bbox": {
+        "cx": 0.2,
+        "cy": 0,
+        "cz": 1,
+        "l": 4,
+        "w": 2,
+        "h": 2,
+        "quaternion": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        }
+      }
+    },
+    {
+      "file_id": "0.pcd",
+      "label_id": "a:2",
+      "label_category_id": "car",
+      "label_type": "3d_bbox",
+      "stage_id": "Labelling",
+      "sensor_id": "lidar",
+      "label_set_id": "default",
+      "three_d_bbox": {
+        "cx": 10,
+        "cy": 0,
+        "cz": 1,
+        "l": 4,
+        "w": 2,
+        "h": 2,
+        "quaternion": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        }
+      }
+    },
+    {
+      "file_id": "1.pcd",
+      "label_id": "a:1",
+      "label_category_id": "car",
+      "label_type": "3d_bbox",
+      "stage_id": "Labelling",
+      "sensor_id": "lidar",
+      "label_set_id": "default",
+      "three_d_bbox": {
+        "cx": 1.2,
+        "cy": 0,
+        "cz": 1,
+        "l": 4,
+        "w": 2,
+        "h": 2,
+        "quaternion": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        }
+      }
+    },
+    {
+      "file_id": "1.pcd",
+      "label_id": "a:3",
+      "label_category_id": "pedestrian",
+      "label_type": "3d_bbox",
+      "stage_id": "Labelling",
+      "sensor_id": "lidar",
+      "label_set_id": "default",
+      "three_d_bbox": {
+        "cx": 20,
+        "cy": 0,
+        "cz": 1,
+        "l": 4,
+        "w": 2,
+        "h": 2,
+        "quaternion": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        }
+      }
+    }
+  ]
+}

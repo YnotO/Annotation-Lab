@@ -22,9 +22,9 @@ class AppTests(unittest.TestCase):
         self.assertFalse(app.exception)
         self.assertEqual(len(app.dataframe[1].value), 1)
         self.assertEqual(app.dataframe[1].value.iloc[0].status, "unknown ID")
-        app.selectbox[0].select("Brian").run()
+        app.selectbox(key="classification_annotator").select("Brian").run()
         self.assertFalse(app.exception)
-        self.assertEqual(app.selectbox[0].value, "Brian")
+        self.assertEqual(app.selectbox(key="classification_annotator").value, "Brian")
 
     def test_upload_mode_waits_for_both_files(self):
         app = AppTest.from_file(str(ROOT / "app.py"), default_timeout=30).run()
@@ -32,6 +32,25 @@ class AppTests(unittest.TestCase):
         self.assertFalse(app.exception)
         self.assertEqual(len(app.metric), 0)
         self.assertIn("Upload both files", app.info[0].value)
+
+    def test_lidar_sample_and_threshold(self):
+        app = AppTest.from_file(str(ROOT / "app.py"), default_timeout=30).run()
+        app.selectbox(key="evaluation_type").select("LiDAR 3D boxes").run()
+        self.assertFalse(app.exception)
+        self.assertEqual(app.metric[0].value, "2")
+        self.assertEqual(app.metric[1].value, "75.0%")
+        self.assertEqual(app.metric[2].value, "2")
+        self.assertEqual(app.metric[3].value, "2")
+        app.slider(key="lidar_threshold").set_value(1.0).run()
+        self.assertFalse(app.exception)
+        self.assertEqual(app.metric[2].value, "5")
+
+    def test_lidar_upload_screen(self):
+        app = AppTest.from_file(str(ROOT / "app.py"), default_timeout=30).run()
+        app.selectbox(key="evaluation_type").select("LiDAR 3D boxes").run()
+        app.radio[0].set_value("Upload your data").run()
+        self.assertFalse(app.exception)
+        self.assertEqual(len(app.metric), 0)
 
 
 if __name__ == "__main__":
